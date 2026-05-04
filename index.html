@@ -407,8 +407,17 @@ textarea{resize:vertical;min-height:80px;}
         <input type="text" id="o-city" placeholder="e.g. Johannesburg">
       </div>
       <div class="form-full">
+        <label>Delivery Method *</label>
+        <select id="o-delivery" onchange="updateDelivery()">
+          <option value="">Select…</option>
+          <option value="collection">🏠 Free Collection — Sunninghill / East Rand area</option>
+          <option value="delivery">🚚 Delivery anywhere in SA — R120 flat rate</option>
+        </select>
+      </div>
+      <div class="form-full" id="address-wrap" style="display:none;">
         <label>Delivery Address</label>
-        <input type="text" id="o-address" placeholder="Street address for delivery (leave blank if collecting)">
+        <input type="text" id="o-address" placeholder="Street address for delivery">
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:5px;">📦 Inge will confirm courier details after your order is received.</div>
       </div>
       <div>
         <label>Number of Copies *</label>
@@ -436,9 +445,20 @@ textarea{resize:vertical;min-height:80px;}
       </div>
     </div>
 
-    <div class="total-row">
-      <div class="total-label">Order Total</div>
-      <div class="total-amount">R <span id="total-display">____</span></div>
+    <div class="total-row" style="flex-direction:column;align-items:stretch;gap:6px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);">Books (<span id="qty-line">1</span> × R250)</div>
+        <div style="font-size:14px;color:var(--white);">R <span id="books-subtotal">250</span></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;" id="delivery-line" style="display:none;">
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);">Delivery</div>
+        <div style="font-size:14px;color:var(--white);" id="delivery-display">—</div>
+      </div>
+      <div style="height:1px;background:rgba(194,97,152,0.2);"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div class="total-label">Order Total</div>
+        <div class="total-amount">R <span id="total-display">250</span></div>
+      </div>
     </div>
 
     <!-- PAYMENT INFO -->
@@ -511,6 +531,7 @@ textarea{resize:vertical;min-height:80px;}
 <script>
 let qty = 1;
 const PRICE = 250;
+const DELIVERY = 120;
 
 function changeQty(d) {
   qty = Math.max(1, qty + d);
@@ -518,13 +539,29 @@ function changeQty(d) {
   updateTotal();
 }
 
-function updateTotal() {
-  const el = document.getElementById('total-display');
-  if (PRICE > 0) {
-    el.textContent = (PRICE * qty).toFixed(0);
-  } else {
-    el.textContent = '____';
+function updateDelivery() {
+  const method = document.getElementById('o-delivery').value;
+  const addrWrap = document.getElementById('address-wrap');
+  const deliveryLine = document.getElementById('delivery-line');
+  const deliveryDisplay = document.getElementById('delivery-display');
+  addrWrap.style.display = method === 'delivery' ? 'block' : 'none';
+  deliveryLine.style.display = method ? 'flex' : 'none';
+  if (method === 'delivery') {
+    deliveryDisplay.textContent = 'R ' + DELIVERY;
+  } else if (method === 'collection') {
+    deliveryDisplay.textContent = 'Free';
   }
+  updateTotal();
+}
+
+function updateTotal() {
+  const method = document.getElementById('o-delivery') ? document.getElementById('o-delivery').value : '';
+  const booksTotal = PRICE * qty;
+  const deliveryFee = method === 'delivery' ? DELIVERY : 0;
+  const total = booksTotal + deliveryFee;
+  document.getElementById('books-subtotal').textContent = booksTotal;
+  document.getElementById('qty-line').textContent = qty;
+  document.getElementById('total-display').textContent = total;
 }
 
 async function submitOrder() {
@@ -536,8 +573,12 @@ async function submitOrder() {
   const source  = document.getElementById('o-source').value;
   const message = document.getElementById('o-message').value.trim();
 
+  const deliveryMethod = document.getElementById('o-delivery').value;
   if (!name || !phone || !email || !city) {
     alert('Please fill in your name, contact number, email and city.'); return;
+  }
+  if (!deliveryMethod) {
+    alert('Please select a delivery method.'); return;
   }
 
   const payload = {
@@ -560,6 +601,7 @@ async function submitOrder() {
       city:       payload.city,
       address:    payload.delivery_address,
       copies:     payload.copies,
+      delivery_method: payload.delivery_method,
       heard_from: payload.heard_from,
       message:    payload.message,
       book:       payload.book
