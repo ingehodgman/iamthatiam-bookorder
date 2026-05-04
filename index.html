@@ -648,6 +648,14 @@
     letter-spacing: -0.5px;
   }
   .free-title em { font-style: italic; color: var(--yellow); font-weight: 500; }
+  .teqoa-mark {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-style: normal;
+    color: var(--yellow);
+    letter-spacing: 0.15em;
+    font-size: 0.92em;
+  }
   .free-tagline {
     font-family: var(--display);
     font-size: 16px;
@@ -655,6 +663,13 @@
     color: var(--grey-300);
     margin: 0;
     font-weight: 400;
+  }
+  .free-blurb {
+    font-size: 13px;
+    color: var(--grey-400);
+    margin: 8px 0 0 0;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
   }
   .free-divider {
     width: 50px; height: 3px;
@@ -963,10 +978,10 @@
       </div>
       <p>Inge will be in touch shortly to confirm payment details.</p>
       <div class="payshap">
-        <div class="payshap-label">PayShap to</div>
-        <div class="payshap-num">079 442 3830</div>
+        <div class="payshap-label">PayShap Reference</div>
+        <div class="payshap-num" id="success-payshap-ref">KC-XXXX</div>
       </div>
-      <p style="margin-top: 16px; font-size: 13px;">Use your order reference as the payment reference.</p>
+      <p style="margin-top: 16px; font-size: 13px;">Inge will send PayShap details when she confirms your order on WhatsApp.</p>
       <p class="thank-you">Thank you for supporting Koach Creative</p>
     </div>
   </div>
@@ -975,8 +990,9 @@
   <div class="free-section">
     <div class="free-header">
       <span class="free-badge">✨ Free · A Gift From Inge</span>
-      <h2 class="free-title">Listen to Inge's <em>Prophetic Music</em></h2>
+      <h2 class="free-title"><span class="teqoa-mark">TEQOA</span> · Prophetic Music</h2>
       <p class="free-tagline">Soaking sounds and worship for your healing journey</p>
+      <p class="free-blurb">The musical heartbeat of Koach Creative — manna for the road.</p>
       <div class="free-divider"></div>
     </div>
     <div class="free-grid">
@@ -1017,7 +1033,7 @@
   </div>
 
   <div class="footer">
-    Need help? WhatsApp Inge on <strong>079 442 3830</strong><br/>
+    Need help? Send your order via the form above and Inge will be in touch.<br/>
     <em>Koach Creative — Restoring minds, one story at a time</em>
   </div>
 </div>
@@ -1275,7 +1291,7 @@
 
     if (orderData.heard) lines.push(`Heard from: ${orderData.heard}`);
     if (orderData.message) lines.push(`Message: ${orderData.message}`);
-    lines.push(``, `Awaiting payment via PayShap (079 442 3830) using reference ${orderData.orderId}`);
+    lines.push(``, `Awaiting payment confirmation — please reply with PayShap details.`);
 
     let msg = lines.join('\n');
     if (plainText) msg = msg.replace(/\*/g, '');
@@ -1295,6 +1311,7 @@
 
   function showSuccess() {
     document.getElementById('success-ref').textContent = orderData.orderId;
+    document.getElementById('success-payshap-ref').textContent = orderData.orderId;
     document.getElementById('step-review').classList.remove('show');
     document.getElementById('step-success').classList.add('show');
     window.scrollTo({ top: 0, behavior: 'smooth' });
