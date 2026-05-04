@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Am That I Am — Order Your Copy · Koach Creative</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --pink:#C26198;
+  --pink-light:#E08AB8;
+  --purple:#7B3FA8;
+  --purple-deep:#3D1A6E;
+  --gold:#FFE600;
+  --gold-soft:rgba(255,230,0,0.7);
+  --cream:#FDF8F4;
+  --white:#FFFFFF;
+  --grey:rgba(255,255,255,0.5);
+  --ink:#1A0030;
+}
+body{
+  font-family:'Barlow',sans-serif;
+  background:#F0E8F4;
+  display:flex;justify-content:center;align-items:flex-start;
+  min-height:100vh;padding:40px 20px;
+}
+.invite{
+  width:800px;
+  background:linear-gradient(160deg, var(--purple-deep) 0%, #2A0855 40%, #1A0030 100%);
+  position:relative;overflow:hidden;
+  opacity:0;transform:translateY(30px);
+  animation:cardIn 0.9s cubic-bezier(0.22,1,0.36,1) 0.1s forwards;
+}
+@keyframes cardIn{to{opacity:1;transform:translateY(0);}}
+.invite::before{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(194,97,152,0.05) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(194,97,152,0.05) 1px,transparent 1px);
+  background-size:36px 36px;pointer-events:none;z-index:1;
+}
+/* Decorative glow */
+.invite::after{
+  content:'';position:absolute;top:-100px;right:-100px;
+  width:400px;height:400px;
+  background:radial-gradient(circle,rgba(194,97,152,0.15) 0%,transparent 70%);
+  pointer-events:none;z-index:1;
+}
+
+/* TOP BAND */
+.arch-band{
+  height:5px;
+  background:linear-gradient(90deg,var(--purple-deep) 0%,var(--pink) 30%,var(--gold) 50%,var(--pink) 70%,var(--purple-deep) 100%);
+  position:relative;z-index:5;
+  transform-origin:left;animation:bandIn 1s cubic-bezier(0.22,1,0.36,1) 0.3s both;
+}
+@keyframes bandIn{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* HEADER */
+.header{
+  padding:44px 60px 32px;position:relative;z-index:2;
+  display:flex;align-items:flex-start;justify-content:space-between;
+  border-bottom:1px solid rgba(194,97,152,0.2);
+  opacity:0;animation:fadeUp 0.7s ease 0.5s forwards;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.brand-block{display:flex;flex-direction:column;gap:4px;}
+.brand-eyebrow{font-size:10px;font-weight:600;letter-spacing:0.4em;text-transform:uppercase;color:var(--pink-light);}
+.brand-name{font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:800;color:var(--white);letter-spacing:-1px;line-height:1;}
+.brand-name span{color:var(--gold);}
+.brand-sub{font-size:9px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:2px;}
+.author-badge{display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
+.author-label{font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.4);}
+.author-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;font-style:italic;color:rgba(255,255,255,0.7);}
+
+/* HERO */
+.hero{
+  padding:48px 60px 36px;position:relative;z-index:2;
+  opacity:0;animation:fadeUp 0.7s ease 0.7s forwards;
+}
+.hero-eyebrow{font-size:11px;font-weight:500;letter-spacing:0.4em;text-transform:uppercase;color:var(--pink);margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--pink);}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:80px;font-weight:300;color:var(--white);line-height:0.88;letter-spacing:-1px;margin-bottom:4px;}
+.hero-title em{font-style:italic;color:var(--gold);}
+.hero-title-sub{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:600;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.15em;margin-top:12px;display:block;}
+.hero-divider{width:100%;height:1px;background:linear-gradient(90deg,var(--pink) 0%,rgba(194,97,152,0.2) 60%,transparent 100%);margin:28px 0;}
+.hero-tagline{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:300;font-style:italic;color:rgba(255,255,255,0.65);max-width:480px;line-height:1.6;}
+
+/* BOOK INFO STRIP */
+.book-strip{
+  margin:0 60px;display:grid;grid-template-columns:1fr 1fr 1fr;
+  border:1px solid rgba(194,97,152,0.2);
+  position:relative;z-index:2;
+  opacity:0;animation:fadeUp 0.7s ease 0.9s forwards;
+}
+.book-panel{padding:24px 28px;position:relative;transition:background 0.3s;}
+.book-panel:hover{background:rgba(255,255,255,0.04);}
+.book-panel:not(:last-child){border-right:1px solid rgba(194,97,152,0.2);}
+.book-panel::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.4s cubic-bezier(0.22,1,0.36,1);}
+.book-panel:hover::after{transform:scaleX(1);}
+.bp-label{font-size:10px;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:var(--pink-light);margin-bottom:8px;}
+.bp-value{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;color:var(--white);line-height:1.2;text-transform:uppercase;}
+.bp-sub{font-size:12px;color:rgba(255,255,255,0.4);margin-top:4px;}
+
+/* BODY */
+.body{
+  padding:36px 60px;position:relative;z-index:2;
+  display:grid;grid-template-columns:1fr auto;gap:36px;align-items:start;
+  border-top:1px solid rgba(194,97,152,0.1);
+  opacity:0;animation:fadeUp 0.7s ease 1s forwards;
+}
+.invite-text{font-size:15px;font-weight:300;color:rgba(255,255,255,0.7);line-height:1.8;max-width:400px;}
+.invite-text strong{color:var(--white);font-weight:500;}
+
+/* ORDER CARD */
+.order-card{
+  background:linear-gradient(135deg,var(--pink) 0%,var(--purple) 100%);
+  padding:28px 32px;min-width:200px;
+  position:relative;overflow:hidden;cursor:pointer;
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.order-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(194,97,152,0.4);}
+.order-card::before{content:'';position:absolute;top:-30px;right:-30px;width:100px;height:100px;border:2px solid rgba(255,255,255,0.1);border-radius:50%;}
+.order-card::after{content:'';position:absolute;bottom:-20px;left:-20px;width:80px;height:80px;border:2px solid rgba(255,255,255,0.08);border-radius:50%;}
+.oc-label{font-size:10px;font-weight:700;letter-spacing:0.4em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:8px;}
+.oc-price{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:4px;}
+.oc-price-sub{font-size:11px;color:rgba(255,255,255,0.6);margin-bottom:16px;}
+.oc-divider{width:40px;height:1px;background:rgba(255,255,255,0.3);margin-bottom:14px;}
+.oc-action{font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.8);margin-bottom:6px;}
+.oc-btn{
+  margin-top:12px;width:100%;
+  background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.35);
+  color:white;font-family:'Barlow Condensed',sans-serif;font-size:14px;
+  font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
+  padding:10px;cursor:pointer;transition:background 0.2s;
+}
+.oc-btn:hover{background:rgba(255,255,255,0.25);}
+
+/* AMAZON SECTION */
+.amazon-section{
+  margin:0 60px;padding:20px 28px;
+  background:rgba(0,0,0,0.2);
+  border:1px solid rgba(194,97,152,0.15);
+  display:flex;align-items:center;gap:24px;
+  position:relative;z-index:2;
+  opacity:0;animation:fadeUp 0.7s ease 1.1s forwards;
+}
+.amazon-label{font-size:10px;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:var(--pink-light);margin-bottom:4px;}
+.amazon-text{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.5;}
+.amazon-text a{color:var(--gold);text-decoration:none;font-weight:500;}
+.amazon-text a:hover{text-decoration:underline;}
+.amazon-qr-wrap{flex-shrink:0;background:white;padding:6px;border-radius:4px;}
+.amazon-qr-wrap img{width:60px;height:60px;display:block;}
+
+/* ORDER FORM SECTION */
+.order-section{
+  margin:0 60px;padding:32px 0 0;
+  border-top:1px solid rgba(194,97,152,0.15);
+  position:relative;z-index:2;
+  opacity:0;animation:fadeUp 0.7s ease 1.2s forwards;
+}
+.os-title{font-size:11px;font-weight:600;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:12px;}
+.os-title::after{content:'';flex:1;height:1px;background:rgba(255,230,0,0.2);}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.form-full{grid-column:1/-1;}
+label{display:block;font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:6px;}
+input,select,textarea{
+  width:100%;background:rgba(255,255,255,0.06);
+  border:1px solid rgba(194,97,152,0.25);color:var(--white);
+  font-family:'Barlow',sans-serif;font-size:14px;font-weight:300;
+  padding:11px 14px;outline:none;transition:border-color 0.2s,background 0.2s;
+  -webkit-appearance:none;
+}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,0.25);}
+input:focus,select:focus,textarea:focus{border-color:var(--pink);background:rgba(255,255,255,0.09);}
+select option{background:#2A0855;color:var(--white);}
+textarea{resize:vertical;min-height:80px;}
+.qty-row{display:flex;align-items:center;gap:12px;}
+.qty-btn{width:36px;height:36px;background:rgba(194,97,152,0.2);border:1px solid rgba(194,97,152,0.3);color:white;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;flex-shrink:0;}
+.qty-btn:hover{background:rgba(194,97,152,0.4);}
+.qty-display{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:700;color:var(--white);min-width:40px;text-align:center;}
+.qty-label-sm{font-size:11px;color:rgba(255,255,255,0.4);}
+.total-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 0;border-top:1px solid rgba(194,97,152,0.15);
+  margin-top:8px;
+}
+.total-label{font-size:11px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.5);}
+.total-amount{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:700;color:var(--gold);}
+.submit-btn{
+  width:100%;padding:16px;margin-top:16px;
+  background:linear-gradient(90deg,var(--pink) 0%,var(--purple) 100%);
+  border:none;color:white;
+  font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;
+  letter-spacing:0.2em;text-transform:uppercase;
+  cursor:pointer;transition:opacity 0.2s,transform 0.2s;position:relative;overflow:hidden;
+}
+.submit-btn:hover{opacity:0.9;transform:translateY(-1px);}
+.submit-btn::after{content:'→';margin-left:10px;}
+
+/* PAYMENT INFO */
+.payment-info{
+  margin:20px 0 0;padding:20px 24px;
+  background:rgba(255,230,0,0.04);
+  border:1px solid rgba(255,230,0,0.12);
+}
+.pi-title{font-size:10px;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.pi-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.pi-step{text-align:center;}
+.pi-num{width:28px;height:28px;border-radius:50%;background:rgba(194,97,152,0.3);border:1px solid rgba(194,97,152,0.5);color:white;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;}
+.pi-step-title{font-size:11px;font-weight:600;color:var(--white);margin-bottom:3px;}
+.pi-step-sub{font-size:10px;color:rgba(255,255,255,0.4);line-height:1.4;}
+.shapid-box{
+  margin-top:12px;padding:10px 16px;
+  background:rgba(194,97,152,0.1);
+  border:1px solid rgba(194,97,152,0.2);
+  text-align:center;
+}
+.shapid-label{font-size:9px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--pink-light);margin-bottom:3px;}
+.shapid-value{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--white);}
+.shapid-sub{font-size:10px;color:rgba(255,255,255,0.4);margin-top:2px;}
+
+/* SUCCESS */
+.success-wrap{display:none;text-align:center;padding:40px 20px;}
+.success-wrap.show{display:block;}
+.success-icon{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--purple));color:white;font-size:24px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+.success-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--white);margin-bottom:8px;}
+.success-msg{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.7;}
+
+/* FOOTER */
+.footer{
+  margin:32px 60px 0;padding:20px 0;
+  border-top:1px solid rgba(194,97,152,0.15);
+  display:flex;align-items:center;justify-content:space-between;
+  position:relative;z-index:2;
+  opacity:0;animation:fadeUp 0.7s ease 1.3s forwards;
+}
+.footer-brand{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:rgba(255,255,255,0.15);letter-spacing:-0.5px;}
+.footer-brand span{color:var(--gold);}
+.footer-copy{font-size:10px;color:rgba(255,255,255,0.25);letter-spacing:0.1em;}
+.footer-site{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--pink-light);}
+
+/* BOTTOM BAND */
+.bottom-band{
+  height:5px;
+  background:linear-gradient(90deg,var(--purple-deep) 0%,var(--pink) 30%,var(--gold) 50%,var(--pink) 70%,var(--purple-deep) 100%);
+}
+
+@media(max-width:700px){
+  body{padding:0;}
+  .invite{width:100%;border-radius:0;}
+  .header{padding:28px 20px 24px;flex-direction:column;gap:10px;}
+  .author-badge{align-items:flex-start;}
+  .hero{padding:32px 20px 24px;}
+  .hero-title{font-size:52px;}
+  .hero-tagline{font-size:17px;}
+  .book-strip{margin:0 20px;grid-template-columns:1fr;}
+  .book-panel:not(:last-child){border-right:none;border-bottom:1px solid rgba(194,97,152,0.2);}
+  .book-strip{grid-template-columns:1fr!important;}
+  .body{padding:28px 20px;grid-template-columns:1fr;}
+  .order-card{width:100%;}
+  .amazon-section{margin:0 20px;flex-direction:column;gap:16px;text-align:center;}
+  .amazon-qr-wrap{margin:0 auto;}
+  .order-section{margin:0 20px;padding:28px 0 0;}
+  .form-grid{grid-template-columns:1fr;}
+  .pi-steps{grid-template-columns:1fr;gap:10px;}
+  .footer{margin:24px 20px 0;flex-direction:column;gap:8px;text-align:center;padding:16px 0;}
+  /* Course reminder */
+  .invite [style*="margin:0 60px 32px"]{margin-left:20px!important;margin-right:20px!important;flex-direction:column;gap:16px;text-align:center;}
+  .total-row{flex-direction:column;gap:6px;text-align:center;}
+  .qty-row{justify-content:center;}
+  .submit-btn{font-size:15px;padding:14px;}
+  .shapid-box{margin:10px 0 0;}
+}
+@media(max-width:420px){
+  .hero-title{font-size:42px;}
+  .brand-name{font-size:38px;}
+  .oc-price{font-size:28px;}
+  input,select,textarea{font-size:16px;} /* prevents iOS zoom */
+}
+
+/* COURSE REMINDER */
+.course-reminder{
+  margin:0 60px 32px;padding:24px 28px;
+  background:rgba(255,230,0,0.04);
+  border:1px solid rgba(255,230,0,0.15);
+  display:flex;align-items:center;gap:24px;
+  position:relative;z-index:2;
+}
+.cr-text{flex:1;}
+.cr-label{font-size:10px;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.cr-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:var(--white);margin-bottom:4px;}
+.cr-desc{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.6;max-width:380px;}
+.cr-link{display:inline-block;margin-top:10px;font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--pink-light);text-decoration:none;}
+.cr-qr{flex-shrink:0;text-align:center;}
+.cr-qr-box{background:white;padding:6px;border-radius:4px;display:inline-block;}
+.cr-qr-box img{width:70px;height:70px;display:block;}
+.cr-scan-label{font-size:9px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--pink-light);margin-top:6px;}
+.cr-scan-sub{font-size:9px;color:rgba(255,255,255,0.35);margin-top:2px;}
+
+@media(max-width:700px){
+  .course-reminder{margin:0 20px 28px!important;flex-direction:column;align-items:flex-start;gap:16px;}
+  .cr-qr{width:100%;display:flex;align-items:center;gap:16px;}
+  .cr-qr-box img{width:60px;height:60px;}
+  .cr-scan-label,.cr-scan-sub{display:inline;margin-top:0;margin-left:4px;}
+  .cr-desc{max-width:100%;}
+  .footer{margin:0 20px 0!important;flex-wrap:wrap;gap:6px;}
+  .footer-copy{width:100%;text-align:center;order:3;}
+}
+</style>
+</head>
+<body>
+<div class="invite">
+  <div class="arch-band"></div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand-block">
+      <div class="brand-eyebrow">Koach Creative · Book Order</div>
+      <div class="brand-name">koach<span>.</span></div>
+      <div class="brand-sub">creative · ingelein hodgman</div>
+    </div>
+    <div class="author-badge">
+      <div class="author-label">Author</div>
+      <div class="author-name">Ingelein Hodgman</div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Now Available · Hardcopy</div>
+    <div class="hero-title"><em>i am that</em><br><em>i am</em></div>
+    <span class="hero-title-sub">Confronting Childhood Trauma's Grip on Who You Are</span>
+    <div class="hero-divider"></div>
+    <div class="hero-tagline">"What if your deepest wounds could become your greatest strength? Your healing starts here."</div>
+  </div>
+
+  <!-- BOOK INFO STRIP -->
+  <div class="book-strip">
+    <div class="book-panel">
+      <div class="bp-label">Price</div>
+      <div class="bp-value">R 250</div>
+      <div class="bp-sub">Per hardcopy · incl. VAT</div>
+    </div>
+    <div class="book-panel">
+      <div class="bp-label">Author</div>
+      <div class="bp-value">Ingelein Hodgman</div>
+      <div class="bp-sub">Koach Creative · 2026</div>
+    </div>
+    <div class="book-panel">
+      <div class="bp-label">Also available</div>
+      <div class="bp-value">On Amazon</div>
+      <div class="bp-sub">a.co/d/085Y7WJa</div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+    <div class="invite-text">
+      <p>Every word in this book was written from <strong>wounds that became wisdom.</strong></p>
+      <br>
+      <p>If you are tired of carrying pain that has no name yet — if you have ever felt too broken to be loved, especially by God — this book was written for you.</p>
+      <br>
+      <p>To order your <strong>hardcopy</strong>, fill in the form below. Inge will contact you directly to confirm your order and arrange payment and delivery.</p>
+    </div>
+    <div class="order-card" onclick="document.getElementById('order-form').scrollIntoView({behavior:'smooth'})">
+      <div class="oc-label">Hardcopy Price</div>
+      <div class="oc-price">R 250</div>
+      <div class="oc-price-sub">per copy · incl. VAT</div>
+      <div class="oc-divider"></div>
+      <div class="oc-action">Order direct from Inge</div>
+      <button class="oc-btn">Order Now</button>
+    </div>
+  </div>
+
+  <!-- AMAZON SECTION -->
+  <div class="amazon-section">
+    <div style="flex:1">
+      <div class="amazon-label">Prefer to buy online?</div>
+      <div class="amazon-text">Order on Amazon at <a href="https://a.co/d/085Y7WJa" target="_blank">a.co/d/085Y7WJa</a> — or scan the QR code to go straight to the listing.</div>
+    </div>
+    <div class="amazon-qr-wrap">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQgAAAEICAIAAAAslP2oAAAFBElEQVR4nO3dUY4UNxRAUQZlF1kF+18Eq8g6Ot+RrpEs2bEN53xDddHMlaV64/LX5/P5BvzX99M3ADcSBgRhQBAGBGFAEAYEYUAQBgRhQBAGBGFAEAYEYUAQBgRhQPhr9i/8/fVjx30s98/n59brj76HVZ87+z2PPve2+zxl9t9rxYAgDAjCgCAMCMKAIAwIwoAwPccY2T03GHnlOfopp/5fXv95sGJAEAYEYUAQBgRhQBAGBGFAWDbHGFn1XPm2/RWr9j/snsOs2texyis/D1YMCMKAIAwIwoAgDAjCgCAMCNvnGK9b9dz91Lzi1L6I11kxIAgDgjAgCAOCMCAIA4IwIPxxc4xV+yVu2x9y2/VfZ8WAIAwIwoAgDAjCgCAMCMKAsH2Ocdtz8VfObZi9z1fOCbnt52HEigFBGBCEAUEYEIQBQRgQhAFh2Rzjlefot+1zmP3edu8nWfX9vPLzMGLFgCAMCMKAIAwIwoAgDAjCgPD1+XxO38P/6rZzr0/xXqlfs2JAEAYEYUAQBgRhQBAGBGFA2D7H+F3fp/TK+Rin9lfcdt7ILCsGBGFAEAYEYUAQBgRhQBAGhOk5xqn3Mo2cmnusek/U7zq32f09z37u7HWsGBCEAUEYEIQBQRgQhAFBGBCmz8e47ff4b5tLzF5/5NT+h93ndcw69R4wKwYEYUAQBgRhQBAGBGFAEAaEZe+VOrUP4dTz+5FT70e67dyP284Xtx8DFhAGBGFAEAYEYUAQBgRhQJjej7HbK/sHbvvc2+ZCs3bPl2ZZMSAIA4IwIAgDgjAgCAOCMCBsP+d75NT7oHafa3Hbe6hu+/eeuo79GLCAMCAIA4IwIAgDgjAgCAPC8+d8j9z2vqmRU/sfXjmP/NR56lYMCMKAIAwIwoAgDAjCgCAMCNfNMU597m3nS4y8cp8jt52jMmLFgCAMCMKAIAwIwoAgDAjCgLD9fIzb5g8js7/3/8r5ErNOzalm7d4nY8WAIAwIwoAgDAjCgCAMCMKAMD3H2P3+pdvOsT7l1Hnks9eZvZ9T+ytmWTEgCAOCMCAIA4IwIAgDgjAgTM8xTp0nPXs/s3/+1D6KkVPniO/+fm6bF41YMSAIA4IwIAgDgjAgCAOCMCBMn48xa/dz91Wf+8p527NemT+cmtuMWDEgCAOCMCAIA4IwIAgDgjAgLDsf49Rz8VPvX3plDjDrlf0Su1kxIAgDgjAgCAOCMCAIA4IwIGzfj3Eb84dff+5t+09Ova/MigFBGBCEAUEYEIQBQRgQhAFh2fkYt9l9fsXs546+t91zg1f2w9x2PokVA4IwIAgDgjAgCAOCMCAIA8Ky90qdmhuc+v3+3U7NGXbvc5h1ar5hxYAgDAjCgCAMCMKAIAwIwoCwbI4xcuqc5t1W7TdY5bb3Qe2+/u75hhUDgjAgCAOCMCAIA4IwIAgDwvY5xm12nwu++3zx0fVP3f+sVftD7MeAA4QBQRgQhAFBGBCEAUEYEP64OcasU+eC755L7N7PsOp7OzWfsWJAEAYEYUAQBgRhQBAGBGFA2D7HeOV9ULPzh93P6U+9x+nU+eK37SexYkAQBgRhQBAGBGFAEAYEYUBYNse47ZzsWbedU777/VS7rzNy6tzuWVYMCMKAIAwIwoAgDAjCgCAMCF+fz+f0PcB1rBgQhAFBGBCEAUEYEIQBQRgQhAFBGBCEAUEYEIQBQRgQhAFBGBD+BaUGLJNiPan5AAAAAElFTkSuQmCC" alt="Amazon QR">
+    </div>
+  </div>
+
+  <!-- ORDER FORM -->
+  <div class="order-section" id="order-form">
+    <div class="os-title">Place Your Order</div>
+    <div class="form-grid">
+      <div>
+        <label>Full Name *</label>
+        <input type="text" id="o-name" placeholder="Your full name">
+      </div>
+      <div>
+        <label>Contact Number *</label>
+        <input type="tel" id="o-phone" placeholder="e.g. 082 123 4567">
+      </div>
+      <div>
+        <label>Email Address *</label>
+        <input type="email" id="o-email" placeholder="your@email.com">
+      </div>
+      <div>
+        <label>City / Town *</label>
+        <input type="text" id="o-city" placeholder="e.g. Johannesburg">
+      </div>
+      <div class="form-full">
+        <label>Delivery Address</label>
+        <input type="text" id="o-address" placeholder="Street address for delivery (leave blank if collecting)">
+      </div>
+      <div>
+        <label>Number of Copies *</label>
+        <div class="qty-row">
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <div class="qty-display" id="qty-display">1</div>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+          <div class="qty-label-sm">copy / copies</div>
+        </div>
+      </div>
+      <div>
+        <label>How did you hear about the book?</label>
+        <select id="o-source">
+          <option value="">Select…</option>
+          <option>Social media</option>
+          <option>Friend / family</option>
+          <option>Church / ministry</option>
+          <option>Koach Creative course</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-full">
+        <label>Message / Special Request</label>
+        <textarea id="o-message" placeholder="Any special request, dedication, or note to Inge…"></textarea>
+      </div>
+    </div>
+
+    <div class="total-row">
+      <div class="total-label">Order Total</div>
+      <div class="total-amount">R <span id="total-display">____</span></div>
+    </div>
+
+    <!-- PAYMENT INFO -->
+    <div class="payment-info">
+      <div class="pi-title">How Payment Works</div>
+      <div class="pi-steps">
+        <div class="pi-step">
+          <div class="pi-num">1</div>
+          <div class="pi-step-title">Submit Order</div>
+          <div class="pi-step-sub">Fill in the form and click Submit</div>
+        </div>
+        <div class="pi-step">
+          <div class="pi-num">2</div>
+          <div class="pi-step-title">Inge Confirms</div>
+          <div class="pi-step-sub">She'll contact you with total & payment details</div>
+        </div>
+        <div class="pi-step">
+          <div class="pi-num">3</div>
+          <div class="pi-step-title">Pay via PayShap</div>
+          <div class="pi-step-sub">Instant payment from any SA banking app</div>
+        </div>
+      </div>
+      <div class="shapid-box">
+        <div class="shapid-label">PayShap ID</div>
+        <div class="shapid-value">079 442 3830</div>
+        <div class="shapid-sub">Ingelein Hodgman · Absa · works with Capitec, FNB, Standard Bank, Nedbank</div>
+      </div>
+    </div>
+
+    <div id="order-form-wrap">
+      <button class="submit-btn" onclick="submitOrder()">Submit My Order</button>
+    </div>
+    <div class="success-wrap" id="order-success">
+      <div class="success-icon">✓</div>
+      <div class="success-title">Order Received!</div>
+      <div class="success-msg">
+        Thank you — Inge will be in touch shortly to confirm your order and share payment details.<br><br>
+        <em style="font-size:12px;color:rgba(255,255,255,0.4);">"He has sent me to bind up the broken-hearted, to proclaim freedom for the captives." — Isaiah 61:1</em>
+      </div>
+    </div>
+    <div style="height:32px;"></div>
+  </div>
+
+  <!-- COURSE REMINDER -->
+  <div class="course-reminder">
+    <div class="cr-text">
+      <div class="cr-label">Also Available · Online Course</div>
+      <div class="cr-title">The Restored Mind</div>
+      <div class="cr-desc">The book is the companion to Inge's full online course — 11 modules, 220+ flashcards, and Hebrew &amp; Greek word studies. The book is compulsory to complete the course.</div>
+      <a href="https://ingequest.gumroad.com/l/brtjp" target="_blank" class="cr-link">Enrol Now — ZAR 600 →</a>
+    </div>
+    <div class="cr-qr">
+      <div class="cr-qr-box">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUgAAAFICAIAAAC9dvBkAAAHSUlEQVR4nO3dwa0zNRhAUYLogirovwiqoI6wgCVeWLKxfd85S8Q/mSTvyosv9ny+3+8vQMuvp28AWE/YECRsCBI2BAkbgoQNQcKGIGFDkLAhSNgQJGwIEjYECRuChA1Bwoag32b/we+fP3bcx3J/ff/8z/9+6v5P3c/odUdeuZ/Z68xe/zaz79eKDUHChiBhQ5CwIUjYECRsCBI2BE3PsUdWzRVnzc4hZ+fJu+elq+bbt13nda/8PY9YsSFI2BAkbAgSNgQJG4KEDUHChqBlc+yRVXO5U/tvV82fd89FV73u7rn3bb8XWHX9Wbv/HqzYECRsCBI2BAkbgoQNQcKGIGFD0PY59m1WzZ93z0tvm3vvnt+u+n0B/7BiQ5CwIUjYECRsCBI2BAkbgoQNQT9ujn3b/PPU/u2R3fPt295vlRUbgoQNQcKGIGFDkLAhSNgQJGwI2j7Hvm0+ueqc7d37lled773q/z/1Ocx6fZ/8KlZsCBI2BAkbgoQNQcKGIGFDkLAhaNkc+7Z9ziOn9gPvPs98ZPd56bfd/yqv/D2PWLEhSNgQJGwIEjYECRuChA1Bwoagz/f7PX0P/6vdc9FV+6h3z1FX7ceuvu7rrNgQJGwIEjYECRuChA1BwoYgYUPQM8/HXjUf3j03fn0ufdv526f2Xd+2X332c7BiQ5CwIUjYECRsCBI2BAkbgoQNQcfm2Luf/7zKbft4d88/d8/bX/neT1n1fq3YECRsCBI2BAkbgoQNQcKGIGFD0PZzxXc/P3mV2+a9p55HvXtOPnJqvv3K/N9+bEDYUCRsCBI2BAkbgoQNQcKGoOn92Kfmjbedmz1yaj7/yu8FVt3nK/u6T72uFRuChA1BwoYgYUOQsCFI2BAkbAianmOvmouumqOeev7wqf3Sq6x6v7ud2hc9+z3uvk/7sQFhQ5GwIUjYECRsCBI2BAkbgpbtxz713Obb5smn5vynzvce2T33XvV5nrrP3a9rxYYgYUOQsCFI2BAkbAgSNgQJG4Kmn49923nOtz23eeS2ue7Ibb8LOOXU7yxW3Y8VG4KEDUHChiBhQ5CwIUjYECRsCJqeY4/snsud2o+9ex5+at7+yuc2Up2rr/rcrNgQJGwIEjYECRuChA1BwoYgYUPQsjn2yCvzw1m3zZ932z0nn3XqedS3nVc/YsWGIGFDkLAhSNgQJGwIEjYECRuCtj8f+9TcdeSVfby37RsfmX3d3c8P330/t+1LH7FiQ5CwIUjYECRsCBI2BAkbgoQNQdNz7FNemSfvvv6pfcK3zXtH13l9vr3q/q3YECRsCBI2BAkbgoQNQcKGIGFD0PQc+9Rcd/c50rNO7St+ZZ/wqs//1P75235HMMuKDUHChiBhQ5CwIUjYECRsCBI2BG0/V3z39Xefg717f++q131lvn3b/H/WbfPqESs2BAkbgoQNQcKGIGFDkLAhSNgQ9Pl+v0sudOqc6lmn5oqrvDIPHzk17z21n//U37kVG4KEDUHChiBhQ5CwIUjYECRsCFr2fOzZed1t+65f3+/9yn7s3Va931O/m/B8bGBI2BAkbAgSNgQJG4KEDUHChqBl54qfctv+3tvOXR9ZdT+vnEP+034XYMWGIGFDkLAhSNgQJGwIEjYECRuCtp8rftt5zre5bd6++zqzXv8eT83hrdgQJGwIEjYECRuChA1BwoYgYUPQsv3Yp87TXuX1/be7z1E/tf95t93va5bnYwNDwoYgYUOQsCFI2BAkbAgSNgQtez72yKlztkeqz6/e/Tm/Pvc+9bz0WZ6PDQwJG4KEDUHChiBhQ5CwIUjYEDR9rvip88Nfv/6sU3Py2fu5bT/zqfu57e/Big1BwoYgYUOQsCFI2BAkbAgSNgRtn2Pvnq+OnLr+yG3P/X7le/xpnCsODAkbgoQNQcKGIGFDkLAhSNgQND3Hft1t+7RP7U9+5Vz3WT/t/Y5YsSFI2BAkbAgSNgQJG4KEDUHChqDp52O/ss92ND+8bR/17rnryKp57Kr92Ld9Dq/sex+xYkOQsCFI2BAkbAgSNgQJG4KEDUHTc+yRU/tOV81LZ506T3t2zrlqbn/q+c+3PXd69/WdKw4MCRuChA1BwoYgYUOQsCFI2BC0bI49cttzoV/ZP7zq+qvm3qfm869cf9XnZo4NDAkbgoQNQcKGIGFDkLAhSNgQtH2O/Yrbnp/8yr7xU+e0j+ye86+y+/pWbAgSNgQJG4KEDUHChiBhQ5CwIcgc+1+n5sarXnfVPPa2+e2pz+fU5+n52MCQsCFI2BAkbAgSNgQJG4KEDUHb59innps9a9U889T+3pHd+59n7T7nfNX3Neu2792KDUHChiBhQ5CwIUjYECRsCBI2BC2bY982L13l1PO0T32et93n7vvZPSc/xYoNQcKGIGFDkLAhSNgQJGwIEjYEfb7f7+l7ABazYkOQsCFI2BAkbAgSNgQJG4KEDUHChiBhQ5CwIUjYECRsCBI2BAkbgoQNQX8D7fbEkOrxwtwAAAAASUVORK5CYII=" alt="Course QR" style="width:70px;height:70px;display:block;">
+      </div>
+      <div class="cr-scan-label">Scan to Enrol</div>
+      <div class="cr-scan-sub">koachcreative.space</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">koach<span>.</span></div>
+    <div class="footer-copy">© 2026 Koach Creative · Ingelein Hodgman</div>
+    <div class="footer-site">koachcreative.space</div>
+  </div>
+  <div class="bottom-band"></div>
+</div>
+
+<script>
+let qty = 1;
+const PRICE = 250;
+
+function changeQty(d) {
+  qty = Math.max(1, qty + d);
+  document.getElementById('qty-display').textContent = qty;
+  updateTotal();
+}
+
+function updateTotal() {
+  const el = document.getElementById('total-display');
+  if (PRICE > 0) {
+    el.textContent = (PRICE * qty).toFixed(0);
+  } else {
+    el.textContent = '____';
+  }
+}
+
+async function submitOrder() {
+  const name    = document.getElementById('o-name').value.trim();
+  const phone   = document.getElementById('o-phone').value.trim();
+  const email   = document.getElementById('o-email').value.trim();
+  const city    = document.getElementById('o-city').value.trim();
+  const address = document.getElementById('o-address').value.trim();
+  const source  = document.getElementById('o-source').value;
+  const message = document.getElementById('o-message').value.trim();
+
+  if (!name || !phone || !email || !city) {
+    alert('Please fill in your name, contact number, email and city.'); return;
+  }
+
+  const payload = {
+    name, phone, email, city,
+    delivery_address: address || 'Collection',
+    copies: qty,
+    heard_from: source || 'Not specified',
+    message: message || 'None',
+    book: 'I Am That I Am — Hardcopy'
+  };
+
+  const btn = document.querySelector('.submit-btn');
+  btn.textContent = 'Sending…'; btn.disabled = true;
+
+  try {
+    const res = await fetch('https://formspree.io/f/xpwzgvnj', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (res.ok) {
+      document.getElementById('order-form-wrap').style.display = 'none';
+      document.getElementById('order-success').classList.add('show');
+    } else {
+      alert('Submission failed. Please WhatsApp Inge directly on 079 442 3830.');
+      btn.textContent = 'Submit My Order'; btn.disabled = false;
+    }
+  } catch(e) {
+    alert('Network error. Please WhatsApp Inge directly on 079 442 3830.');
+    btn.textContent = 'Submit My Order'; btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>
