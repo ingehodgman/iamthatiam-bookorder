@@ -308,6 +308,8 @@ textarea{resize:vertical;min-height:80px;}
   .footer-copy{width:100%;text-align:center;order:3;}
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init('WVx_ydewBPQl9jmJv');</script>
 </head>
 <body>
 <div class="invite">
@@ -551,20 +553,22 @@ async function submitOrder() {
   btn.textContent = 'Sending…'; btn.disabled = true;
 
   try {
-    const res = await fetch('https://formspree.io/f/xpwzgvnj', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(payload)
+    await emailjs.send('service_mtitxhc', 'template_vec1j4a', {
+      name:       payload.name,
+      phone:      payload.phone,
+      email:      payload.email,
+      city:       payload.city,
+      address:    payload.delivery_address,
+      copies:     payload.copies,
+      heard_from: payload.heard_from,
+      message:    payload.message,
+      book:       payload.book
     });
-    if (res.ok) {
-      document.getElementById('order-form-wrap').style.display = 'none';
-      document.getElementById('order-success').classList.add('show');
-    } else {
-      alert('Submission failed. Please WhatsApp Inge directly on 079 442 3830.');
-      btn.textContent = 'Submit My Order'; btn.disabled = false;
-    }
+    document.getElementById('order-form-wrap').style.display = 'none';
+    document.getElementById('order-success').classList.add('show');
   } catch(e) {
-    alert('Network error. Please WhatsApp Inge directly on 079 442 3830.');
+    console.error('EmailJS error:', e);
+    alert('Error: ' + JSON.stringify(e));
     btn.textContent = 'Submit My Order'; btn.disabled = false;
   }
 }
